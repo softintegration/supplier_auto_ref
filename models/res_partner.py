@@ -6,12 +6,18 @@ SUPPLIER_REF_SEQUENCE_CODE = "res.partner.supplier.ref"
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    supplier_readonly_ref = fields.Boolean(compute='_compute_supplier_readonly_ref')
+    readonly_ref = fields.Boolean(compute='_compute_readonly_ref')
 
     @api.depends('supplier_rank')
-    def _compute_supplier_readonly_ref(self):
+    def _compute_readonly_ref(self):
         for each in self:
-            each.supplier_readonly_ref = each.supplier_rank > 0
+            each.readonly_ref = each.supplier_rank > 0 or (self._module_customer_auto_ref_installed() and each.customer_rank > 0)
+
+
+    @api.model
+    def _module_customer_auto_ref_installed(self):
+        "This method return True if the customer_auto_ref module is installed"
+        return 'customer_auto_ref' in self.env['ir.module.module']._installed().keys()
 
     def _set_supplier_auto_ref(self):
         for each in self:

@@ -2,7 +2,7 @@
 
 {
     'name': 'Supplier auto assignment of reference',
-    'version': '1.0.1',
+    'version': '1.0.1.1',
     'author':'Soft-integration',
     'category': 'Inventory/Purchase',
     'summary': 'Supplier auto assignment of reference',

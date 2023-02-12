@@ -7,10 +7,10 @@
           <field name="inherit_id" ref="base.view_partner_form"/>
           <field name="arch" type="xml">
             <xpath expr="//field[@name='ref']" position="after">
-                <field name="supplier_readonly_ref" invisible="1"/>
+                <field name="readonly_ref" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='ref']" position="attributes">
-                <attribute name="attrs">{'readonly':[('supplier_readonly_ref','=',True)]}</attribute>
+                <attribute name="attrs">{'readonly':[('readonly_ref','=',True)]}</attribute>
             </xpath>
           </field>
         </record>
